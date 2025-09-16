@@ -338,9 +338,6 @@ export function WorkerApp({
       <div className="min-h-screen bg-gray-50">
         <div className="bg-white p-4 border-b">
           <div className="flex items-center">
-            <Button variant="ghost" size="icon" onClick={onGoBack}>
-              <ArrowLeft className="w-6 h-6" />
-            </Button>
             <h2 className="ml-4 text-xl font-semibold text-gray-900">
               Agendamentos
             </h2>
@@ -560,9 +557,6 @@ export function WorkerApp({
       <div className="min-h-screen bg-gray-50">
         <div className="bg-white p-4 border-b">
           <div className="flex items-center">
-            <Button variant="ghost" size="icon" onClick={onGoBack}>
-              <ArrowLeft className="w-6 h-6" />
-            </Button>
             <h2 className="ml-4 text-xl font-semibold text-gray-900">
               Mensagens
             </h2>
