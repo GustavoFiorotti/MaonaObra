@@ -40,7 +40,7 @@ export default function App() {
         <div className="flex-1 flex flex-col items-center justify-center p-6 space-y-8">
           <div className="text-center space-y-4">
             <img
-              src="public\images\logo.png"
+              src="/images/logo.png"
               alt="Mão na Obra Logo"
               className="w-32 h-32 mx-auto mb-6"
             />
