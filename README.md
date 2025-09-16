@@ -2,6 +2,8 @@
 
 Bem-vindo ao repositório do projeto "Mão na Obra" — um protótipo de aplicação para conectar clientes a profissionais de serviços locais.
 
+🌐 **Site em Produção:** [https://maonaobra.vercel.app/](https://maonaobra.vercel.app/)
+
 ## O que tem aqui
 
 - Frontend em React + Vite (TypeScript)
@@ -45,4 +47,11 @@ npm run dev
 
 ---
 
-_Gerado/atualizado em 15 de setembro de 2025_
+## Deploy
+
+O projeto está configurado para deploy automático na Vercel. Cada push na branch `main` dispara um novo deploy em:
+[https://maonaobra.vercel.app/](https://maonaobra.vercel.app/)
+
+---
+
+_Atualizado em 16 de setembro de 2025_
