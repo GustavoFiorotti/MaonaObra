@@ -10,6 +10,9 @@ export default function App() {
   const [currentScreen, setCurrentScreen] = useState("welcome");
   const [userType, setUserType] = useState("");
   const [navigationHistory, setNavigationHistory] = useState(["welcome"]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigateTo = useCallback(
     (screen: string, data?: any) => {
@@ -24,6 +27,13 @@ export default function App() {
       const previousScreen = navigationHistory[navigationHistory.length - 1];
       setNavigationHistory((prev) => prev.slice(0, -1));
       setCurrentScreen(previousScreen);
+
+      // Limpa os campos ao voltar para a tela de welcome
+      if (previousScreen === "welcome") {
+        setEmail("");
+        setPassword("");
+        setError("");
+      }
     }
   }, [navigationHistory]);
 
@@ -31,7 +41,19 @@ export default function App() {
     setNavigationHistory(["welcome"]);
     setCurrentScreen("welcome");
     setUserType("");
+    setEmail("");
+    setPassword("");
+    setError("");
   }, []);
+
+  const handleLogin = () => {
+    if (email === "admin" && password === "admin") {
+      setError(""); // Limpa o erro se o login for bem-sucedido
+      navigateTo(userType === "client" ? "home" : "worker-dashboard");
+    } else {
+      setError("Credenciais incorretas");
+    }
+  };
 
   // Welcome Screen
   if (currentScreen === "welcome") {
@@ -111,12 +133,18 @@ export default function App() {
 
             <div className="space-y-4">
               <div>
-                <Label htmlFor="email">E-mail</Label>
+                <Label htmlFor="email">Email ou nome de usuário</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="seu@email.com"
-                  className="mt-1 h-12 rounded-xl"
+                  placeholder="admin"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`mt-1 h-12 rounded-xl transition-all ${
+                    error
+                      ? "ring-2 ring-red-500 bg-red-50 placeholder:text-red-700/50"
+                      : "focus-visible:ring-ring"
+                  }`}
                 />
               </div>
 
@@ -125,17 +153,23 @@ export default function App() {
                 <Input
                   id="password"
                   type="password"
-                  placeholder="••••••••"
-                  className="mt-1 h-12 rounded-xl"
+                  placeholder="•••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={`mt-1 h-12 rounded-xl transition-all ${
+                    error
+                      ? "ring-2 ring-red-500 bg-red-50 placeholder:text-red-700/50"
+                      : "focus-visible:ring-ring"
+                  }`}
                 />
               </div>
 
+              {error && (
+                <p className="text-sm text-red-600 text-center">{error}</p>
+              )}
+
               <Button
-                onClick={() =>
-                  navigateTo(
-                    userType === "client" ? "home" : "worker-dashboard"
-                  )
-                }
+                onClick={handleLogin}
                 className="w-full h-12 bg-orange-600 hover:bg-orange-700 text-white rounded-xl mt-6"
               >
                 Entrar
@@ -186,6 +220,7 @@ export default function App() {
         currentScreen={currentScreen}
         onNavigate={navigateTo}
         onGoBack={goBack}
+        onReset={resetNavigation}
       />
     );
   }
@@ -206,6 +241,7 @@ export default function App() {
         currentScreen={currentScreen}
         onNavigate={navigateTo}
         onGoBack={goBack}
+        onReset={resetNavigation}
       />
     );
   }

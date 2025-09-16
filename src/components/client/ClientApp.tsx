@@ -51,12 +51,14 @@ interface ClientAppProps {
   currentScreen: string;
   onNavigate: (screen: string, data?: any) => void;
   onGoBack: () => void;
+  onReset: () => void;
 }
 
 export function ClientApp({
   currentScreen,
   onNavigate,
   onGoBack,
+  onReset,
 }: ClientAppProps) {
   const [selectedWorker, setSelectedWorker] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -1276,10 +1278,7 @@ export function ClientApp({
 
           {/* Logout */}
           <Card className="border-0 shadow-sm mt-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-red-50">
-            <CardContent
-              className="p-4"
-              onClick={() => handleNavigate("welcome")}
-            >
+            <CardContent className="p-4" onClick={onReset}>
               <div className="flex items-center w-full text-red-600 hover:text-red-700">
                 <ArrowLeft className="w-5 h-5 mr-3" />
                 <span>Sair da Conta</span>

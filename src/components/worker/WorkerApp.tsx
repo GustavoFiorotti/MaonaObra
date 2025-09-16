@@ -48,12 +48,14 @@ interface WorkerAppProps {
   currentScreen: string;
   onNavigate: (screen: string, data?: any) => void;
   onGoBack: () => void;
+  onReset: () => void;
 }
 
 export function WorkerApp({
   currentScreen,
   onNavigate,
   onGoBack,
+  onReset,
 }: WorkerAppProps) {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [selectedClient, setSelectedClient] = useState("");
@@ -889,7 +891,7 @@ export function WorkerApp({
               <CardContent className="p-4">
                 <div
                   className="flex items-center space-x-3 text-red-600"
-                  onClick={() => handleNavigate("welcome")}
+                  onClick={onReset}
                 >
                   <ArrowLeft className="w-5 h-5" />
                   <span>Sair da Conta</span>
