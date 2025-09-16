@@ -109,7 +109,7 @@ export function WorkerApp({
             }`}
           >
             <HomeIcon className="w-5 h-5 mb-1" />
-            <span className="text-xs">Dashboard</span>
+            <span className="text-xs">Home</span>
           </Button>
 
           <Button
@@ -151,7 +151,7 @@ export function WorkerApp({
             }`}
           >
             <User className="w-5 h-5 mb-1" />
-            <span className="text-xs">Perfil</span>
+            <span className="text-xs">Meu Perfil</span>
           </Button>
         </div>
       </div>
@@ -170,9 +170,6 @@ export function WorkerApp({
               <h1 className="text-2xl font-bold text-gray-900">Olá, João!</h1>
               <p className="text-gray-600">Aqui está seu painel do dia</p>
             </div>
-            <Button variant="ghost" size="icon" className="hover:bg-gray-100">
-              <Settings className="w-6 h-6" />
-            </Button>
           </div>
         </div>
 
@@ -279,7 +276,7 @@ export function WorkerApp({
             <div className="space-y-3">
               {workerBookings
                 .filter((b) => b.status !== "concluido")
-                .slice(0, 2)
+                .slice(0, 3)
                 .map((booking) => (
                   <Card key={booking.id} className="border-0 shadow-sm">
                     <CardContent className="p-4">
@@ -326,30 +323,6 @@ export function WorkerApp({
                     </CardContent>
                   </Card>
                 ))}
-            </div>
-          </div>
-
-          {/* Ações Rápidas */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Ações Rápidas</h3>
-            <div className="grid grid-cols-2 gap-3">
-              <Button
-                variant="outline"
-                className="h-20 flex-col space-y-2 border-orange-200 hover:border-orange-400 hover:bg-orange-50"
-                onClick={() => handleNavigate("worker-profile")}
-              >
-                <Edit className="w-6 h-6 text-orange-600" />
-                <span className="text-sm">Editar Perfil</span>
-              </Button>
-
-              <Button
-                variant="outline"
-                className="h-20 flex-col space-y-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50"
-                onClick={() => handleNavigate("worker-messages")}
-              >
-                <MessageCircle className="w-6 h-6 text-blue-600" />
-                <span className="text-sm">Mensagens</span>
-              </Button>
             </div>
           </div>
         </div>
@@ -746,12 +719,7 @@ export function WorkerApp({
       <div className="min-h-screen bg-gray-50">
         <div className="bg-white p-4 border-b">
           <div className="flex items-center">
-            <Button variant="ghost" size="icon" onClick={onGoBack}>
-              <ArrowLeft className="w-6 h-6" />
-            </Button>
-            <h2 className="ml-4 text-xl font-semibold text-gray-900">
-              Meu Perfil
-            </h2>
+            <h1 className="text-2xl font-bold text-gray-900">Meu Perfil</h1>
           </div>
         </div>
 
@@ -787,13 +755,24 @@ export function WorkerApp({
                 </Badge>
               </div>
 
-              <Button
-                variant="outline"
-                className="w-full border-orange-200 text-orange-600 hover:bg-orange-50"
-              >
-                <Edit className="w-4 h-4 mr-2" />
-                Editar Perfil
-              </Button>
+              <div className="relative opacity-60 cursor-not-allowed">
+                <div className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                  <Badge
+                    variant="secondary"
+                    className="text-xs bg-orange-100 text-orange-800"
+                  >
+                    Em breve
+                  </Badge>
+                </div>
+                <Button
+                  variant="outline"
+                  className="w-full border-orange-200 text-orange-600 hover:bg-orange-50"
+                  disabled
+                >
+                  <Edit className="w-4 mr-2" />
+                  Editar Perfil
+                </Button>
+              </div>
             </CardContent>
           </Card>
 
@@ -874,7 +853,15 @@ export function WorkerApp({
           <div className="space-y-3">
             <h3 className="font-semibold text-gray-900">Configurações</h3>
 
-            <Card className="border-0 shadow-sm cursor-pointer hover:bg-gray-50">
+            <Card className="border-0 shadow-sm relative opacity-60 cursor-not-allowed hover:shadow-md transition-shadow">
+              <div className="absolute top-2 right-2 z-10">
+                <Badge
+                  variant="secondary"
+                  className="text-xs bg-orange-100 text-orange-800"
+                >
+                  Em breve
+                </Badge>
+              </div>
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
@@ -885,7 +872,15 @@ export function WorkerApp({
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-sm cursor-pointer hover:bg-gray-50">
+            <Card className="border-0 shadow-sm relative opacity-60 cursor-not-allowed hover:shadow-md transition-shadow">
+              <div className="absolute top-2 right-2 z-10">
+                <Badge
+                  variant="secondary"
+                  className="text-xs bg-orange-100 text-orange-800"
+                >
+                  Em breve
+                </Badge>
+              </div>
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
@@ -898,11 +893,12 @@ export function WorkerApp({
 
             <Card className="border-0 shadow-sm cursor-pointer hover:bg-red-50">
               <CardContent className="p-4">
-                <div className="flex items-center space-x-3 text-red-600">
+                <div
+                  className="flex items-center space-x-3 text-red-600"
+                  onClick={() => handleNavigate("welcome")}
+                >
                   <ArrowLeft className="w-5 h-5" />
-                  <span onClick={() => handleNavigate("welcome")}>
-                    Sair da Conta
-                  </span>
+                  <span>Sair da Conta</span>
                 </div>
               </CardContent>
             </Card>

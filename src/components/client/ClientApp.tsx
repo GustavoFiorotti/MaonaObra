@@ -205,7 +205,7 @@ export function ClientApp({
             }`}
           >
             <CalendarIcon className="w-5 h-5 mb-1" />
-            <span className="text-xs">Agendados</span>
+            <span className="text-xs">Agendamentos</span>
           </Button>
 
           <Button
@@ -1177,7 +1177,7 @@ export function ClientApp({
     return (
       <div className="min-h-screen bg-gray-50">
         <div className="bg-white p-4 border-b">
-          <h2 className="text-xl font-semibold text-gray-900">Minha Conta</h2>
+          <h1 className="text-2xl font-bold text-gray-900">Minha Conta</h1>
         </div>
 
         <div className="p-4 space-y-4 pb-20">
